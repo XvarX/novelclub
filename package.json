@@ -1,0 +1,22 @@
+{
+  "name": "novelclub",
+  "version": "1.0.0",
+  "description": "a novel club which people can fly their mind",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XvarX/novelclub.git"
+  },
+  "author": "Xvar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XvarX/novelclub/issues"
+  },
+  "homepage": "https://github.com/XvarX/novelclub#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
