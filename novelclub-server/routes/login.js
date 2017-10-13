@@ -8,7 +8,24 @@ router.get('/', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
     var param = req.body || req.params;
-    console.log(param);
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+        host : 'localhost',
+        user : 'root',
+        password : 'duoyi',
+        database:'novelclub',
+    });
+    
+    connection.connect()
+    
+    connection.query('INSERT INTO user(name, password) VALUES(?, ?)', [param["name"], param["password"]],function(err,result) {
+        if (err) throw err;
+        console.log('Insert OK', result)
+    });
+    
+    connection.end();
+
 })
 
 module.exports = router;
