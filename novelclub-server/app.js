@@ -13,6 +13,8 @@ var users = require('./routes/users');
 var test = require('./routes/routertest');
 var login = require('./routes/login');
 
+var cookieroute = require('./test/cookiestest');
+
 var app = express();
 
 // view engine setup
@@ -41,6 +43,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/test', test);
 app.use('/login', login);
+
+app.use('/cookieroute', cookieroute)
 
 
 // catch 404 and forward to error handler
