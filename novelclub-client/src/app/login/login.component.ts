@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class LoginComponent {
     title = 'login';
+    error : any;
 
     private sUrl = "http://localhost:3000/login"
     constructor(private http: HttpClient) {}
@@ -25,6 +26,22 @@ export class LoginComponent {
                             console.log(res);
                         })
                         .catch(this.handleError);
+    }
+
+    onSet():void {
+        const url = 'http://localhost:3000/login/api/send';
+        this.http.get(url).subscribe(
+            data => {
+                console.log(data);
+            }, error => this.error = error);
+        }
+
+    onGet():void {
+        const url = 'http://localhost:3000/login/api/get';
+        this.http.get(url).subscribe(
+            data => {
+                console.log(data);
+            }, error => this.error = error);
     }
 
     private handleError(error: any): Promise<any> {
