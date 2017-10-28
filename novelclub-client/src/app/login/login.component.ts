@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-    selector: 'app-login',
+    selector: 'novelclub-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })

@@ -1,25 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { IndexComponent } from './index/index.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { TestComponent } from './test/test.component';
-import { HttpClientModule } from '@angular/common/http'
-
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
+    DashboardComponent,
     LoginComponent,
+    RegisterComponent,
     UserComponent,
     TestComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: 'index',
+        component: IndexComponent
+      },
+      {
+        path:'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path:'login',
+        component: LoginComponent
+      },
+      {
+        path:'register',
+        component:RegisterComponent
+      },
+      {
+        path:'',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      }
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent,LoginComponent,UserComponent,TestComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

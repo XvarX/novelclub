@@ -9,7 +9,7 @@ var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/api/user');
 var test = require('./routes/routertest');
 var login = require('./routes/login');
 
@@ -50,7 +50,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', index);
-app.use('/users', users);
+app.use('/api/users', users);
 app.use('/test', test);
 app.use('/login', login);
 

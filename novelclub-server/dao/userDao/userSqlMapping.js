@@ -2,8 +2,9 @@
 // CRUD SQL STATEMENT
 
 var user = {
-    insert : 'INSERT INTO user(id, name, age) VALUES(0, ?, ?)',
-    update : 'update user set name=?, age=? where id=?',
+    insert : 'INSERT INTO user(name, password) VALUES(?, ?)',
+    queryByName : 'select * from user where name=?',
+    update : 'update user set name=?, password=? where id=?',
     delete : 'delete from user where id=?',
     queryById: 'select * from user where id=?',
     queryAll: 'select * from user'

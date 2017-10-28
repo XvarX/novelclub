@@ -28,10 +28,6 @@ router.get('/addUser', function(req, res, next) {
 var users = require('../data/user').items;
 
 var findUser = function(name, password) {
-  console.log(name)
-  console.log(password)
-  console.log(users[0].name === name)
-  console.log(users[0].password === password)
   return users.find(function(item) {
     return item.name === name && item.password === password
   });
