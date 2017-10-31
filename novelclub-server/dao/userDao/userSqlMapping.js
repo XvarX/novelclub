@@ -4,6 +4,7 @@
 var user = {
     insert : 'INSERT INTO user(name, password) VALUES(?, ?)',
     queryByName : 'select * from user where name=?',
+    loginquery  : 'select * from user where name=? and password=?',
     update : 'update user set name=?, password=? where id=?',
     delete : 'delete from user where id=?',
     queryById: 'select * from user where id=?',

@@ -9,3 +9,8 @@ exports.UserInsertDao = function(username, password, callback) {
     SQLParam = [username, password]
     sqlconnect.SQLFunction(user.insert, SQLParam, callback)
 }
+
+exports.UserLoginQueryDao = function(username, password, callback) {
+    SQLParam = [username, password]
+    sqlconnect.SQLFunction(user.loginquery, SQLParam, callback)
+}

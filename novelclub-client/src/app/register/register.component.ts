@@ -11,13 +11,13 @@ export class RegisterComponent {
     title = 'register';
     error : any;
 
-    private sUrl = "http://localhost:3000/api/user"
+    private sUrl = "http://localhost:3000/api/users"
     constructor(private http: HttpClient) {}
 
     register(name: string, password: string):Promise<void> {
-        const url = 'http://localhost:3000/api/user/register';
+        const url = 'http://localhost:3000/api/users/register';
         console.log(name, password);
-        const body = {name: name, password:password};
+        const body = {username: name, password:password};
         return this.http.post(url, body)
                         .toPromise()
                         .then(res => {
