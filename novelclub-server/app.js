@@ -17,19 +17,11 @@ var cookieroute = require('./test/cookiestest');
 
 var app = express();
 
+//设置跨域访问
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-//设置跨域访问
-app.all('/', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", 'http://127.0.0.1:4200');   //设置跨域访问
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With');
-  res.header("Content-Type", "application/x-www-form-urlencoded");
-  next();
-});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,8 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  name: identityKey,
-  secret: 'chyingp',  // 用来对session id相关的cookie进行签名
+  name: "skey",
+  secret: 'novelclub',  // 用来对session id相关的cookie进行签名
   store: new FileStore(),  // 本地存储session（文本文件，也可以选择其他store，比如redis的）
   saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
   resave: false,  // 是否每次都重新保存会话，建议false
@@ -47,15 +39,15 @@ app.use(session({
       maxAge: 10 * 1000  // 有效期，单位是毫秒
   }
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+
 app.use('/', index);
-app.use('/api/users', users);
+app.use('/api/user', users);
 app.use('/test', test);
 app.use('/login', login);
-
 app.use('/cookieroute', cookieroute)
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,7 +66,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-var identityKey = 'skey'
 
 module.exports = app;
