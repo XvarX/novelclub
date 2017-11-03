@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +14,7 @@ export class RegisterComponent {
     error : any;
 
     private sUrl = "http://localhost:3000/api/users"
-    constructor(private http: HttpClient,
+    constructor(private http: Http,
                 private router: Router) {}
     
 
@@ -36,7 +37,8 @@ export class RegisterComponent {
     testsession():Promise<void> {
         const url = 'http://localhost:3000/cookieroute/session';
         const body = {};
-        return this.http.post(url,body,{observe:"body",withCredentials:true})
+        let options = new RequestOptions({withCredentials:true});
+        return this.http.post(url,body,options)
                         .toPromise()
                         .then(res => {
                             console.log(res);

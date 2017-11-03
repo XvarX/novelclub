@@ -1,5 +1,6 @@
 exports.func = function(router, callback) {
     router.all('*', function (req, res, next) {
+        console.log("here")
         res.header("Access-Control-Allow-Origin", "http://127.0.0.1:4200");   //设置跨域访问
         res.header('Access-Control-Allow-Credentials', 'true');
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

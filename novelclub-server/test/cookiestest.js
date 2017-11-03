@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 router.post('/session', function(req, res, next) {
     res.set({"Access-Control-Allow-Origin":"http://127.0.0.1:4200",
              "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS",
-             "Access-Control-Allow-Credentials":true,
+             "Access-Control-Allow-Credentials":"true",
              "Access-Control-Allow-Headers":"X-Requested-With",
              "Access-Control-Allow-Headers":"Content-Type"
             })
@@ -39,6 +39,7 @@ router.post('/session', function(req, res, next) {
         console.log(res.header)
     }
 });
+
 
 router.get('/session2', function(req, res, next) {
     if (req.session.isVisit) {

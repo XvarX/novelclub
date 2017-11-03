@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     database : 'novelclub',
 });
 
-connection.connect()
+// connection.connect()
 
 exports.SQLFunction = function(sqlstatement, sqlparam, callback) {
     connection.query(sqlstatement, sqlparam, function(err, result) {

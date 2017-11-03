@@ -2,20 +2,11 @@ var express = require('express');
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
 var mycors = require('../../conf/cors')
-
 var router = express.Router();
-mycors.func(router)
+
 router.use(cookieParser());
 
 var userdb = require('../../dao/userDao/userDao');
-
-router.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:4200");   //设置跨域访问
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 router.post('/register', function(req, res, next) {
     var param = req.body || req.params;
