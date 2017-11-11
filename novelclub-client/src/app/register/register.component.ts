@@ -25,8 +25,8 @@ export class RegisterComponent {
         return this.http.post(url,body,{withCredentials:true})
                         .toPromise()
                         .then(res => {
-                            console.log(res["result"])
-                            if (res["result"] == 0) {
+                            console.log(res.json()["code"])
+                            if (res.json()["code"] == 0) {
                                 console.log(res)
                                 this.router.navigate(['dashboard']);
                             }
@@ -41,7 +41,7 @@ export class RegisterComponent {
         return this.http.post(url,body,options)
                         .toPromise()
                         .then(res => {
-                            console.log(res);
+                            console.log(res.json());
                         })
                         .catch(this.handleError);
     }

@@ -1,0 +1,13 @@
+<div *ngIf="show">
+    <input type="text" #title>
+    <br>
+    <input type="text" #universe>
+    <br>
+    <textarea rows="3" cols="20" #context>
+        文章内容
+    </textarea>
+    <br>
+    <button (click)="upload(title.value, universe.value, context.value)">
+            upload
+    </button>
+</div>

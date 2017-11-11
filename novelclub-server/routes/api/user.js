@@ -3,7 +3,7 @@ var session = require('express-session')
 var cookieParser = require('cookie-parser');
 var mycors = require('../../conf/cors')
 var router = express.Router();
-
+mycors.func(router)
 router.use(cookieParser());
 
 var userdb = require('../../dao/userDao/userDao');
@@ -13,25 +13,24 @@ router.post('/register', function(req, res, next) {
     var username = param["username"]
     var password = param["password"]
     
-    console.log(req.session.isVisit)
     userdb.UserQueryDao(username, function(err, result) {
         if (err) {
-            res.status(201).send({result:21, msg:"注册失败"})
+            res.json({code:21, result:"访问错误"})
             return
         }
         if (result.length != 0) {
-            console.log(result)
-            res.status(201).send({result:21, msg:"已有用户名"})
+            console.log(result.body)
+            res.json({code:21, result:"已有用户名"})
             return
         }
         userdb.UserInsertDao(username, password, function(err, result){
             if (err) {
-                res.status(201).send({result:21, msg:"注册失败"})
+                res.json({code:21, result:"访问错误"})
                 return
             }
             console.log(req.session)
             req.session.username = username
-            res.status(201).send({result:0, msg:"注册成功", data:result})
+            res.json({code:0, result:"注册成功"})
         })
     })
 });
@@ -53,9 +52,9 @@ router.post('/login', function(req,res,next) {
 
 router.get('/index', function(req,res,next) {
     if (req.session.username) {
-        res.json({ret_code:0, ret_msg:"欢迎再次访问"})
+        res.json({code:0, result:"欢迎再次访问"})
     } else {
-        res.json({ret_code:21, ret_msg:"请返回注册或登录"})
+        res.json({code:21, result:"请返回注册或登录"})
     }
 })
 
